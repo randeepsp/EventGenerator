@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmysql
+  namespace: enr
+  labels:
+    app: rmysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmysql
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: rmysql
+        tier: web
+    spec:
+      containers:
+        - name: rmysql
+          image: rmysql
+          imagePullPolicy: Never
+          env:
+            - name: placeholderenv
+              value: "uselaterenv"
+
